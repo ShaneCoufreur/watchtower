@@ -53,3 +53,5 @@ dockers:
     tag_templates:
       - 'arm64v8-latest'
       - 'arm64v8-{{ .Version }}'
+release:
+  disable: true
