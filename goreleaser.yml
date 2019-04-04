@@ -31,7 +31,6 @@ dockers:
     image: containrrr/watchtower
     dockerfile: dockerfile/amd64/Dockerfile
     tag_templates:
-      - 'latest'
       - '{{ .Version }}'
   -
     goos: linux
