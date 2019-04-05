@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-
+	log "github.com/sirupsen/logrus"
 	"github.com/docker/docker/api/types"
 	dockercontainer "github.com/docker/docker/api/types/container"
 )
@@ -103,6 +103,9 @@ func (c Container) Links() []string {
 // the container metadata.
 func (c Container) IsWatchtower() bool {
 	val, ok := c.containerInfo.Config.Labels[watchtowerLabel]
+	log.Info(c.Name())
+	log.Infof("Is watchtower: %s", val)
+	log.Infof("Is ok: %t", ok)
 	return ok && val == "true"
 }
 

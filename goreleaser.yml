@@ -28,6 +28,8 @@ dockers:
     goarch: amd64
     goarm: ''
     dockerfile: dockerfile/amd64/Dockerfile
+    build_flag_templates:
+      - "--label=com.centurylinklabs.watchtower=true"
     image_templates:
       - containrrr/watchtower:{{ .Version }}
     binaries:
@@ -37,6 +39,8 @@ dockers:
     goarch: arm
     goarm: 6
     dockerfile: dockerfile/armhf/Dockerfile
+    build_flag_templates:
+      - "--label=com.centurylinklabs.watchtower=true"
     image_templates:
       - containrrr/watchtower:armhf-{{ .Version }}
     binaries:
@@ -46,6 +50,8 @@ dockers:
     goarch: arm64
     goarm: ''
     dockerfile: dockerfile/arm64v8/Dockerfile
+    build_flag_templates:
+      - "--label=com.centurylinklabs.watchtower=true"
     image_templates:
       - containrrr/watchtower:arm64v8-{{ .Version }}
     binaries:

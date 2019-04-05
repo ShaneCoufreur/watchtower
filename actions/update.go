@@ -17,7 +17,7 @@ var (
 // any of the images, the associated containers are stopped and restarted with
 // the new image.
 func Update(client container.Client, filter container.Filter, cleanup bool, noRestart bool, timeout time.Duration) error {
-	log.Debug("Checking containers for updated images")
+	log.Info("Checking containers for updated images")
 
 	containers, err := client.ListContainers(filter)
 	if err != nil {
@@ -45,6 +45,7 @@ func Update(client container.Client, filter container.Filter, cleanup bool, noRe
 		container := containers[i]
 
 		if container.IsWatchtower() {
+			log.Infof("This is the watchtower container %s", containers[i].Name())
 			continue
 		}
 
