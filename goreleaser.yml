@@ -27,26 +27,26 @@ dockers:
     goos: linux
     goarch: amd64
     goarm: ''
-    binary: watchtower
-    image: containrrr/watchtower
     dockerfile: dockerfile/amd64/Dockerfile
-    tag_templates:
-      - '{{ .Version }}'
+    image_templates:
+      - containrrr/watchtower:{{ .Version }}
+    binaries:
+      - watchtower
   -
     goos: linux
     goarch: arm
     goarm: 6
-    binary: watchtower
-    image: containrrr/watchtower
     dockerfile: dockerfile/armhf/Dockerfile
-    tag_templates:
-      - 'armhf-{{ .Version }}'
+    image_templates:
+      - containrrr/watchtower:armhf-{{ .Version }}
+    binaries:
+      - watchtower
   -
     goos: linux
     goarch: arm64
     goarm: ''
-    binary: watchtower
-    image: containrrr/watchtower
     dockerfile: dockerfile/arm64v8/Dockerfile
-    tag_templates:
-      - 'arm64v8-{{ .Version }}'
+    image_templates:
+      - containrrr/watchtower:arm64v8-{{ .Version }}
+    binaries:
+      - watchtower
