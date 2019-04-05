@@ -102,11 +102,9 @@ func (c Container) Links() []string {
 // identified by the presence of the "com.centurylinklabs.watchtower" label in
 // the container metadata.
 func (c Container) IsWatchtower() bool {
-	val, ok := c.containerInfo.Config.Labels[watchtowerLabel]
-	log.Info(c.Name())
-	log.Infof("Is watchtower: %s", val)
-	log.Infof("Is ok: %t", ok)
-	return ok && val == "true"
+	log.Debugf("Checking if %s is a watchtower instance.", c.Name())
+	wasWatchtower := ContainsWatchtowerLabel(c.containerInfo.Config.Labels)
+	return wasWatchtower
 }
 
 // StopSignal returns the custom stop signal (if any) that is encoded in the
@@ -184,4 +182,11 @@ func (c Container) hostConfig() *dockercontainer.HostConfig {
 	}
 
 	return hostConfig
+}
+
+// ContainsWatchtowerLabel takes a map of labels and values and tells
+// the consumer whether it contains a valid watchtower instance label
+func ContainsWatchtowerLabel(labels map[string]string) bool {
+	val, ok := labels[watchtowerLabel]
+	return ok && val == "true"
 }

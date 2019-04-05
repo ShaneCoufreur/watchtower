@@ -73,7 +73,10 @@ jobs:
       - attach_workspace:
           at: .
       - run: go build ./...
-      - run: go test  ./...
+      - run: go get gotest.tools/gotestsum
+      - run: gotestsum --junitfile unit-tests.xml
+      - store_test_results:
+          path: ~/repo/unit-tests.xml
   build:
     executor: go
     steps:
